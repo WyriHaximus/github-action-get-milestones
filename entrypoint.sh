@@ -16,4 +16,4 @@ curl --request GET \
 
 sleep 3
 
-printf "::set-output name=milestones::%s" $(cat /workdir/response.json | jq .)
+printf "::set-output name=milestones::%s" $(cat /workdir/response.json | jq -c .)
