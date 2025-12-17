@@ -1,0 +1,38 @@
+name: Continuous Integration
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  get-milestones:
+    name: Get Milestones (${{ matrix.runs-on }})
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - ubuntu-slim
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+          - ubuntu-24.04-arm
+          - ubuntu-22.04-arm
+          - macos-15-intel
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get Milestones
+        id: milestones
+        uses: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Show Milestones
+        run: echo "${PRODUCTION}"
+        env:
+          PRODUCTION: ${{ steps.milestones.outputs.milestones }}
+      - name: Assert Milestones Output
+        uses: nick-fields/assert-action@v2
+        with:
+          expected: "[{\"url\":\"https://api.github.com/repos/WyriHaximus/github-action-get-milestones/milestones/"
+          actual: ${{ steps.milestones.outputs.milestones }}
+          comparison: startsWith

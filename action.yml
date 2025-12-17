@@ -3,16 +3,6 @@ description: 'Create a new milestone with the given title and description'
 branding:
   icon: 'check-circle'
   color: 'orange'
-inputs:
-  title:
-    description: 'The title (version) for the milestone'
-    required: true
-  description:
-    description: 'An optional description for the milestone'
-    required: false
-outputs:
-  number:
-    description: 'The number of the freshly created milestone'
 runs:
   using: 'docker'
   image: 'Dockerfile'
