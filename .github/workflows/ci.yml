@@ -24,12 +24,10 @@ jobs:
       - name: Get Milestones
         id: milestones
         uses: ./
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Show Milestones
-        run: echo "${PRODUCTION}"
+        run: echo "${MILESTONES}"
         env:
-          PRODUCTION: ${{ steps.milestones.outputs.milestones }}
+          MILESTONES: ${{ steps.milestones.outputs.milestones }}
       - name: Assert Milestones Output
         uses: nick-fields/assert-action@v2
         with:
