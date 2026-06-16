@@ -29,7 +29,7 @@ jobs:
         env:
           MILESTONES: ${{ steps.milestones.outputs.milestones }}
       - name: Assert Milestones Output
-        uses: nick-fields/assert-action@22dd2a66ef733fe92022d3704183ac007463eecb # v3.0.0
+        uses: nick-fields/assert-action@0efd6166067d9c59d89c710fab4f79fb066f8985 # v4.0.1
         with:
           expected: "[{\"url\":\"https://api.github.com/repos/WyriHaximus/github-action-get-milestones/milestones/"
           actual: ${{ steps.milestones.outputs.milestones }}
